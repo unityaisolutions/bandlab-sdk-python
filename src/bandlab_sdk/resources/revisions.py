@@ -7,7 +7,10 @@ from datetime import datetime
 
 import httpx
 
-from ..types import revision_create_params, revision_update_params
+from ..types import (
+    revision_create_params,
+    revision_update_params,
+)
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -23,6 +26,7 @@ from ..types.revision import Revision
 from ..types.collections import ClientID
 from ..types.genre_param import GenreParam
 from ..types.creator_param import CreatorParam
+from ..types.mastering_param import MasteringParam
 from ..types.audio_sample_param import AudioSampleParam
 from ..types.song_summary_param import SongSummaryParam
 from ..types.collections.client_id import ClientID
@@ -65,7 +69,7 @@ class RevisionsResource(SyncAPIResource):
         is_fork: bool | Omit = omit,
         is_public: bool | Omit = omit,
         key: str | Omit = omit,
-        mastering: revision_create_params.Mastering | Omit = omit,
+        mastering: MasteringParam | Omit = omit,
         mixdown: AudioSampleParam | Omit = omit,
         modified_on: Union[str, datetime] | Omit = omit,
         parent_id: str | Omit = omit,
@@ -182,7 +186,7 @@ class RevisionsResource(SyncAPIResource):
         is_fork: bool | Omit = omit,
         is_public: bool | Omit = omit,
         key: str | Omit = omit,
-        mastering: revision_update_params.Mastering | Omit = omit,
+        mastering: MasteringParam | Omit = omit,
         mixdown: AudioSampleParam | Omit = omit,
         modified_on: Union[str, datetime] | Omit = omit,
         parent_id: str | Omit = omit,
@@ -322,7 +326,7 @@ class AsyncRevisionsResource(AsyncAPIResource):
         is_fork: bool | Omit = omit,
         is_public: bool | Omit = omit,
         key: str | Omit = omit,
-        mastering: revision_create_params.Mastering | Omit = omit,
+        mastering: MasteringParam | Omit = omit,
         mixdown: AudioSampleParam | Omit = omit,
         modified_on: Union[str, datetime] | Omit = omit,
         parent_id: str | Omit = omit,
@@ -439,7 +443,7 @@ class AsyncRevisionsResource(AsyncAPIResource):
         is_fork: bool | Omit = omit,
         is_public: bool | Omit = omit,
         key: str | Omit = omit,
-        mastering: revision_update_params.Mastering | Omit = omit,
+        mastering: MasteringParam | Omit = omit,
         mixdown: AudioSampleParam | Omit = omit,
         modified_on: Union[str, datetime] | Omit = omit,
         parent_id: str | Omit = omit,

@@ -10,8 +10,9 @@ from .._utils import PropertyInfo
 from .creator_param import CreatorParam
 from .picture_param import PictureParam
 from .collections.post_param import PostParam
+from .collection_counters_param import CollectionCountersParam
 
-__all__ = ["CollectionCreateParams", "Counters"]
+__all__ = ["CollectionCreateParams"]
 
 
 class CollectionCreateParams(TypedDict, total=False):
@@ -19,7 +20,7 @@ class CollectionCreateParams(TypedDict, total=False):
 
     id: str
 
-    counters: Counters
+    counters: CollectionCountersParam
 
     created_on: Annotated[Union[str, datetime], PropertyInfo(alias="createdOn", format="iso8601")]
 
@@ -36,9 +37,3 @@ class CollectionCreateParams(TypedDict, total=False):
     posts: Iterable[PostParam]
 
     type: Literal["Playlist", "Album"]
-
-
-class Counters(TypedDict, total=False):
-    items: int
-
-    likes: int

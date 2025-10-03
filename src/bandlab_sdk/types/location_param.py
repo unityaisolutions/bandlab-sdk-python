@@ -5,19 +5,14 @@ from __future__ import annotations
 from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .geo_coordinate_param import GeoCoordinateParam
 
-__all__ = ["LocationParam", "Coordinates"]
-
-
-class Coordinates(TypedDict, total=False):
-    latitude: float
-
-    longitude: float
+__all__ = ["LocationParam"]
 
 
 class LocationParam(TypedDict, total=False):
     city: str
 
-    coordinates: Annotated[Coordinates, PropertyInfo(alias="Coordinates")]
+    coordinates: Annotated[GeoCoordinateParam, PropertyInfo(alias="Coordinates")]
 
     country: str

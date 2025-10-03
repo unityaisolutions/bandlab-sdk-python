@@ -10,14 +10,9 @@ from .creator import Creator
 from .picture import Picture
 from .._models import BaseModel
 from .collections.post import Post
+from .collection_counters import CollectionCounters
 
-__all__ = ["Collection", "Counters"]
-
-
-class Counters(BaseModel):
-    items: Optional[int] = None
-
-    likes: Optional[int] = None
+__all__ = ["Collection"]
 
 
 class Collection(BaseModel):
@@ -25,7 +20,7 @@ class Collection(BaseModel):
 
     id: Optional[str] = None
 
-    counters: Optional[Counters] = None
+    counters: Optional[CollectionCounters] = None
 
     created_on: Optional[datetime] = FieldInfo(alias="createdOn", default=None)
 

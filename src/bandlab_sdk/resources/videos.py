@@ -25,6 +25,10 @@ from ..types.creator_param import CreatorParam
 from ..types.collections.post import Post
 from ..types.posts.comment_param import CommentParam
 from ..types.collections.client_id import ClientID
+from ..types.shared_params.image_sample import ImageSample
+from ..types.shared_params.video_sample import VideoSample
+from ..types.shared_params.post_counters import PostCounters
+from ..types.shared_params.revision_summary import RevisionSummary
 
 __all__ = ["VideosResource", "AsyncVideosResource"]
 
@@ -91,14 +95,14 @@ class VideosResource(SyncAPIResource):
         caption: str | Omit = omit,
         client_id: ClientID | Omit = omit,
         comments: Iterable[CommentParam] | Omit = omit,
-        counters: video_create_post_params.Counters | Omit = omit,
+        counters: PostCounters | Omit = omit,
         created_on: Union[str, datetime] | Omit = omit,
         creator: CreatorParam | Omit = omit,
-        image: video_create_post_params.Image | Omit = omit,
+        image: ImageSample | Omit = omit,
         message: str | Omit = omit,
-        revision: video_create_post_params.Revision | Omit = omit,
+        revision: RevisionSummary | Omit = omit,
         type: Literal["Revision", "Image", "Video", "Text"] | Omit = omit,
-        video: video_create_post_params.Video | Omit = omit,
+        video: VideoSample | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,14 +214,14 @@ class AsyncVideosResource(AsyncAPIResource):
         caption: str | Omit = omit,
         client_id: ClientID | Omit = omit,
         comments: Iterable[CommentParam] | Omit = omit,
-        counters: video_create_post_params.Counters | Omit = omit,
+        counters: PostCounters | Omit = omit,
         created_on: Union[str, datetime] | Omit = omit,
         creator: CreatorParam | Omit = omit,
-        image: video_create_post_params.Image | Omit = omit,
+        image: ImageSample | Omit = omit,
         message: str | Omit = omit,
-        revision: video_create_post_params.Revision | Omit = omit,
+        revision: RevisionSummary | Omit = omit,
         type: Literal["Revision", "Image", "Video", "Text"] | Omit = omit,
-        video: video_create_post_params.Video | Omit = omit,
+        video: VideoSample | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

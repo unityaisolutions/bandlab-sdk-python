@@ -11,6 +11,15 @@ from .login import Login as Login
 from .skill import Skill as Skill
 from .author import Author as Author
 from .invite import Invite as Invite
+from .shared import (
+    Lyrics as Lyrics,
+    ImageSample as ImageSample,
+    VideoSample as VideoSample,
+    PostCounters as PostCounters,
+    RevisionSummary as RevisionSummary,
+    ImageSampleCounters as ImageSampleCounters,
+    VideoSampleCounters as VideoSampleCounters,
+)
 from .creator import Creator as Creator
 from .picture import Picture as Picture
 from .profile import Profile as Profile
@@ -18,6 +27,7 @@ from .location import Location as Location
 from .provider import Provider as Provider
 from .revision import Revision as Revision
 from .community import Community as Community
+from .mastering import Mastering as Mastering
 from .post_list import PostList as PostList
 from .song_list import SongList as SongList
 from .collection import Collection as Collection
@@ -33,8 +43,10 @@ from .picture_param import PictureParam as PictureParam
 from .song_counters import SongCounters as SongCounters
 from .song_original import SongOriginal as SongOriginal
 from .user_counters import UserCounters as UserCounters
+from .geo_coordinate import GeoCoordinate as GeoCoordinate
 from .location_param import LocationParam as LocationParam
 from .collection_list import CollectionList as CollectionList
+from .mastering_param import MasteringParam as MasteringParam
 from .me_update_params import MeUpdateParams as MeUpdateParams
 from .post_list_params import PostListParams as PostListParams
 from .provider_type_139 import ProviderType139 as ProviderType139
@@ -48,6 +60,7 @@ from .song_summary_param import SongSummaryParam as SongSummaryParam
 from .song_update_params import SongUpdateParams as SongUpdateParams
 from .badge_list_response import BadgeListResponse as BadgeListResponse
 from .band_counters_param import BandCountersParam as BandCountersParam
+from .collection_counters import CollectionCounters as CollectionCounters
 from .genre_list_response import GenreListResponse as GenreListResponse
 from .label_list_response import LabelListResponse as LabelListResponse
 from .login_create_params import LoginCreateParams as LoginCreateParams
@@ -57,6 +70,7 @@ from .skill_list_response import SkillListResponse as SkillListResponse
 from .song_counters_param import SongCountersParam as SongCountersParam
 from .song_original_param import SongOriginalParam as SongOriginalParam
 from .user_counters_param import UserCountersParam as UserCountersParam
+from .geo_coordinate_param import GeoCoordinateParam as GeoCoordinateParam
 from .group_member_summary import GroupMemberSummary as GroupMemberSummary
 from .report_create_params import ReportCreateParams as ReportCreateParams
 from .password_reset_params import PasswordResetParams as PasswordResetParams
@@ -80,6 +94,7 @@ from .collection_update_params import CollectionUpdateParams as CollectionUpdate
 from .community_counters_param import CommunityCountersParam as CommunityCountersParam
 from .image_create_post_params import ImageCreatePostParams as ImageCreatePostParams
 from .video_create_post_params import VideoCreatePostParams as VideoCreatePostParams
+from .collection_counters_param import CollectionCountersParam as CollectionCountersParam
 from .version_retrieve_response import VersionRetrieveResponse as VersionRetrieveResponse
 from .version_validate_response import VersionValidateResponse as VersionValidateResponse
 from .group_member_summary_param import GroupMemberSummaryParam as GroupMemberSummaryParam

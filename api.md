@@ -1,3 +1,17 @@
+# Shared Types
+
+```python
+from bandlab_sdk.types import (
+    ImageSample,
+    ImageSampleCounters,
+    Lyrics,
+    PostCounters,
+    RevisionSummary,
+    VideoSample,
+    VideoSampleCounters,
+)
+```
+
 # Validation
 
 Types:
@@ -15,7 +29,7 @@ Methods:
 Types:
 
 ```python
-from bandlab_sdk.types import Location, Picture, Profile, UserCounters
+from bandlab_sdk.types import GeoCoordinate, Location, Picture, Profile, UserCounters
 ```
 
 Methods:
@@ -170,7 +184,7 @@ Methods:
 Types:
 
 ```python
-from bandlab_sdk.types import Collection
+from bandlab_sdk.types import Collection, CollectionCounters
 ```
 
 Methods:
@@ -264,7 +278,7 @@ Methods:
 Types:
 
 ```python
-from bandlab_sdk.types import AudioSample, Revision, RevisionCounters
+from bandlab_sdk.types import AudioSample, Mastering, Revision, RevisionCounters
 ```
 
 Methods:

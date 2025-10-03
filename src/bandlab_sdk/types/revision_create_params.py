@@ -9,12 +9,13 @@ from typing_extensions import Annotated, TypedDict
 from .._utils import PropertyInfo
 from .genre_param import GenreParam
 from .creator_param import CreatorParam
+from .mastering_param import MasteringParam
 from .audio_sample_param import AudioSampleParam
 from .song_summary_param import SongSummaryParam
 from .collections.client_id import ClientID
 from .revision_counters_param import RevisionCountersParam
 
-__all__ = ["RevisionCreateParams", "AuxChannel", "AuxChannelEffect", "Mastering"]
+__all__ = ["RevisionCreateParams", "AuxChannel", "AuxChannelEffect"]
 
 
 class RevisionCreateParams(TypedDict, total=False):
@@ -40,7 +41,7 @@ class RevisionCreateParams(TypedDict, total=False):
 
     key: str
 
-    mastering: Mastering
+    mastering: MasteringParam
 
     mixdown: AudioSampleParam
 
@@ -75,9 +76,3 @@ class AuxChannel(TypedDict, total=False):
     preset: str
 
     return_level: Annotated[float, PropertyInfo(alias="returnLevel")]
-
-
-class Mastering(TypedDict, total=False):
-    dry_sample_id: Annotated[str, PropertyInfo(alias="drySampleId")]
-
-    preset: str

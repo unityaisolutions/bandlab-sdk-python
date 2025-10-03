@@ -8,12 +8,13 @@ from pydantic import Field as FieldInfo
 from .genre import Genre
 from .creator import Creator
 from .._models import BaseModel
+from .mastering import Mastering
 from .audio_sample import AudioSample
 from .song_summary import SongSummary
 from .revision_counters import RevisionCounters
 from .collections.client_id import ClientID
 
-__all__ = ["Revision", "AuxChannel", "AuxChannelEffect", "Mastering"]
+__all__ = ["Revision", "AuxChannel", "AuxChannelEffect"]
 
 
 class AuxChannelEffect(BaseModel):
@@ -32,12 +33,6 @@ class AuxChannel(BaseModel):
     preset: Optional[str] = None
 
     return_level: Optional[float] = FieldInfo(alias="returnLevel", default=None)
-
-
-class Mastering(BaseModel):
-    dry_sample_id: Optional[str] = FieldInfo(alias="drySampleId", default=None)
-
-    preset: Optional[str] = None
 
 
 class Revision(BaseModel):

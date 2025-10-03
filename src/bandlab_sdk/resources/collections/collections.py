@@ -40,6 +40,7 @@ from ...types.collection import Collection
 from ...types.creator_param import CreatorParam
 from ...types.picture_param import PictureParam
 from ...types.collections.post_param import PostParam
+from ...types.collection_counters_param import CollectionCountersParam
 
 __all__ = ["CollectionsResource", "AsyncCollectionsResource"]
 
@@ -77,7 +78,7 @@ class CollectionsResource(SyncAPIResource):
         *,
         name: str,
         id: str | Omit = omit,
-        counters: collection_create_params.Counters | Omit = omit,
+        counters: CollectionCountersParam | Omit = omit,
         created_on: Union[str, datetime] | Omit = omit,
         creator: CreatorParam | Omit = omit,
         description: str | Omit = omit,
@@ -170,7 +171,7 @@ class CollectionsResource(SyncAPIResource):
         *,
         name: str,
         id: str | Omit = omit,
-        counters: collection_update_params.Counters | Omit = omit,
+        counters: CollectionCountersParam | Omit = omit,
         created_on: Union[str, datetime] | Omit = omit,
         creator: CreatorParam | Omit = omit,
         description: str | Omit = omit,
@@ -294,7 +295,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         *,
         name: str,
         id: str | Omit = omit,
-        counters: collection_create_params.Counters | Omit = omit,
+        counters: CollectionCountersParam | Omit = omit,
         created_on: Union[str, datetime] | Omit = omit,
         creator: CreatorParam | Omit = omit,
         description: str | Omit = omit,
@@ -387,7 +388,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         *,
         name: str,
         id: str | Omit = omit,
-        counters: collection_update_params.Counters | Omit = omit,
+        counters: CollectionCountersParam | Omit = omit,
         created_on: Union[str, datetime] | Omit = omit,
         creator: CreatorParam | Omit = omit,
         description: str | Omit = omit,

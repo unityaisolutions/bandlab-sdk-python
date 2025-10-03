@@ -6,86 +6,16 @@ from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
-from .status import Status
 from ..._utils import PropertyInfo
 from .client_id import ClientID
 from ..creator_param import CreatorParam
-from ..picture_param import PictureParam
-from ..audio_sample_param import AudioSampleParam
 from ..posts.comment_param import CommentParam
-from ..revision_counters_param import RevisionCountersParam
+from ..shared_params.image_sample import ImageSample
+from ..shared_params.video_sample import VideoSample
+from ..shared_params.post_counters import PostCounters
+from ..shared_params.revision_summary import RevisionSummary
 
-__all__ = ["PostParam", "Counters", "Image", "ImageCounters", "Revision", "RevisionLyrics", "Video", "VideoCounters"]
-
-
-class Counters(TypedDict, total=False):
-    comments: int
-
-    likes: int
-
-    reposts: int
-
-
-class ImageCounters(TypedDict, total=False):
-    likes: int
-
-
-class Image(TypedDict, total=False):
-    id: str
-
-    counters: ImageCounters
-
-    picture: PictureParam
-
-
-class RevisionLyrics(TypedDict, total=False):
-    content: str
-
-
-class Revision(TypedDict, total=False):
-    id: str
-
-    client_id: Annotated[ClientID, PropertyInfo(alias="clientId")]
-
-    counters: RevisionCountersParam
-
-    created_on: Annotated[Union[str, datetime], PropertyInfo(alias="createdOn", format="iso8601")]
-
-    creator: CreatorParam
-
-    description: str
-
-    is_fork: Annotated[bool, PropertyInfo(alias="isFork")]
-
-    is_public: Annotated[bool, PropertyInfo(alias="isPublic")]
-
-    lyrics: RevisionLyrics
-
-    mixdown: AudioSampleParam
-
-    parent_id: Annotated[str, PropertyInfo(alias="parentId")]
-
-    post_id: Annotated[str, PropertyInfo(alias="postId")]
-
-    stamp: str
-
-
-class VideoCounters(TypedDict, total=False):
-    likes: int
-
-    views: int
-
-
-class Video(TypedDict, total=False):
-    id: str
-
-    counters: VideoCounters
-
-    duration: float
-
-    picture: PictureParam
-
-    status: Status
+__all__ = ["PostParam"]
 
 
 class PostParam(TypedDict, total=False):
@@ -97,18 +27,18 @@ class PostParam(TypedDict, total=False):
 
     comments: Iterable[CommentParam]
 
-    counters: Counters
+    counters: PostCounters
 
     created_on: Annotated[Union[str, datetime], PropertyInfo(alias="createdOn", format="iso8601")]
 
     creator: CreatorParam
 
-    image: Image
+    image: ImageSample
 
     message: str
 
-    revision: Revision
+    revision: RevisionSummary
 
     type: Literal["Revision", "Image", "Video", "Text"]
 
-    video: Video
+    video: VideoSample

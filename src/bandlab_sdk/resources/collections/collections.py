@@ -1,0 +1,582 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Union, Iterable
+from datetime import datetime
+from typing_extensions import Literal
+
+import httpx
+
+from .likes import (
+    LikesResource,
+    AsyncLikesResource,
+    LikesResourceWithRawResponse,
+    AsyncLikesResourceWithRawResponse,
+    LikesResourceWithStreamingResponse,
+    AsyncLikesResourceWithStreamingResponse,
+)
+from .posts import (
+    PostsResource,
+    AsyncPostsResource,
+    PostsResourceWithRawResponse,
+    AsyncPostsResourceWithRawResponse,
+    PostsResourceWithStreamingResponse,
+    AsyncPostsResourceWithStreamingResponse,
+)
+from ...types import collection_create_params, collection_update_params
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._base_client import make_request_options
+from ...types.collection import Collection
+from ...types.creator_param import CreatorParam
+from ...types.picture_param import PictureParam
+from ...types.collections.post_param import PostParam
+
+__all__ = ["CollectionsResource", "AsyncCollectionsResource"]
+
+
+class CollectionsResource(SyncAPIResource):
+    @cached_property
+    def posts(self) -> PostsResource:
+        return PostsResource(self._client)
+
+    @cached_property
+    def likes(self) -> LikesResource:
+        return LikesResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> CollectionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/bandlab-sdk-python#accessing-raw-response-data-eg-headers
+        """
+        return CollectionsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> CollectionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/bandlab-sdk-python#with_streaming_response
+        """
+        return CollectionsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        name: str,
+        id: str | Omit = omit,
+        counters: collection_create_params.Counters | Omit = omit,
+        created_on: Union[str, datetime] | Omit = omit,
+        creator: CreatorParam | Omit = omit,
+        description: str | Omit = omit,
+        is_public: bool | Omit = omit,
+        last_updated_on: Union[str, datetime] | Omit = omit,
+        picture: PictureParam | Omit = omit,
+        posts: Iterable[PostParam] | Omit = omit,
+        type: Literal["Playlist", "Album"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Collection:
+        """
+        Create a new collection
+
+        Args:
+          posts
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/collections",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "id": id,
+                    "counters": counters,
+                    "created_on": created_on,
+                    "creator": creator,
+                    "description": description,
+                    "is_public": is_public,
+                    "last_updated_on": last_updated_on,
+                    "picture": picture,
+                    "posts": posts,
+                    "type": type,
+                },
+                collection_create_params.CollectionCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Collection,
+        )
+
+    def retrieve(
+        self,
+        collection_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Collection:
+        """
+        Returns a single collection
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return self._get(
+            f"/collections/{collection_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Collection,
+        )
+
+    def update(
+        self,
+        collection_id: str,
+        *,
+        name: str,
+        id: str | Omit = omit,
+        counters: collection_update_params.Counters | Omit = omit,
+        created_on: Union[str, datetime] | Omit = omit,
+        creator: CreatorParam | Omit = omit,
+        description: str | Omit = omit,
+        is_public: bool | Omit = omit,
+        last_updated_on: Union[str, datetime] | Omit = omit,
+        picture: PictureParam | Omit = omit,
+        posts: Iterable[PostParam] | Omit = omit,
+        type: Literal["Playlist", "Album"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Collection:
+        """
+        Updates a collection
+
+        Args:
+          posts
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return self._patch(
+            f"/collections/{collection_id}",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "id": id,
+                    "counters": counters,
+                    "created_on": created_on,
+                    "creator": creator,
+                    "description": description,
+                    "is_public": is_public,
+                    "last_updated_on": last_updated_on,
+                    "picture": picture,
+                    "posts": posts,
+                    "type": type,
+                },
+                collection_update_params.CollectionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Collection,
+        )
+
+    def delete(
+        self,
+        collection_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Deletes a collection
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            f"/collections/{collection_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+
+class AsyncCollectionsResource(AsyncAPIResource):
+    @cached_property
+    def posts(self) -> AsyncPostsResource:
+        return AsyncPostsResource(self._client)
+
+    @cached_property
+    def likes(self) -> AsyncLikesResource:
+        return AsyncLikesResource(self._client)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncCollectionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/bandlab-sdk-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncCollectionsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncCollectionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/bandlab-sdk-python#with_streaming_response
+        """
+        return AsyncCollectionsResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        name: str,
+        id: str | Omit = omit,
+        counters: collection_create_params.Counters | Omit = omit,
+        created_on: Union[str, datetime] | Omit = omit,
+        creator: CreatorParam | Omit = omit,
+        description: str | Omit = omit,
+        is_public: bool | Omit = omit,
+        last_updated_on: Union[str, datetime] | Omit = omit,
+        picture: PictureParam | Omit = omit,
+        posts: Iterable[PostParam] | Omit = omit,
+        type: Literal["Playlist", "Album"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Collection:
+        """
+        Create a new collection
+
+        Args:
+          posts
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/collections",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "id": id,
+                    "counters": counters,
+                    "created_on": created_on,
+                    "creator": creator,
+                    "description": description,
+                    "is_public": is_public,
+                    "last_updated_on": last_updated_on,
+                    "picture": picture,
+                    "posts": posts,
+                    "type": type,
+                },
+                collection_create_params.CollectionCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Collection,
+        )
+
+    async def retrieve(
+        self,
+        collection_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Collection:
+        """
+        Returns a single collection
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return await self._get(
+            f"/collections/{collection_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Collection,
+        )
+
+    async def update(
+        self,
+        collection_id: str,
+        *,
+        name: str,
+        id: str | Omit = omit,
+        counters: collection_update_params.Counters | Omit = omit,
+        created_on: Union[str, datetime] | Omit = omit,
+        creator: CreatorParam | Omit = omit,
+        description: str | Omit = omit,
+        is_public: bool | Omit = omit,
+        last_updated_on: Union[str, datetime] | Omit = omit,
+        picture: PictureParam | Omit = omit,
+        posts: Iterable[PostParam] | Omit = omit,
+        type: Literal["Playlist", "Album"] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Collection:
+        """
+        Updates a collection
+
+        Args:
+          posts
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return await self._patch(
+            f"/collections/{collection_id}",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "id": id,
+                    "counters": counters,
+                    "created_on": created_on,
+                    "creator": creator,
+                    "description": description,
+                    "is_public": is_public,
+                    "last_updated_on": last_updated_on,
+                    "picture": picture,
+                    "posts": posts,
+                    "type": type,
+                },
+                collection_update_params.CollectionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Collection,
+        )
+
+    async def delete(
+        self,
+        collection_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """
+        Deletes a collection
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            f"/collections/{collection_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=NoneType,
+        )
+
+
+class CollectionsResourceWithRawResponse:
+    def __init__(self, collections: CollectionsResource) -> None:
+        self._collections = collections
+
+        self.create = to_raw_response_wrapper(
+            collections.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            collections.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            collections.update,
+        )
+        self.delete = to_raw_response_wrapper(
+            collections.delete,
+        )
+
+    @cached_property
+    def posts(self) -> PostsResourceWithRawResponse:
+        return PostsResourceWithRawResponse(self._collections.posts)
+
+    @cached_property
+    def likes(self) -> LikesResourceWithRawResponse:
+        return LikesResourceWithRawResponse(self._collections.likes)
+
+
+class AsyncCollectionsResourceWithRawResponse:
+    def __init__(self, collections: AsyncCollectionsResource) -> None:
+        self._collections = collections
+
+        self.create = async_to_raw_response_wrapper(
+            collections.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            collections.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            collections.update,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            collections.delete,
+        )
+
+    @cached_property
+    def posts(self) -> AsyncPostsResourceWithRawResponse:
+        return AsyncPostsResourceWithRawResponse(self._collections.posts)
+
+    @cached_property
+    def likes(self) -> AsyncLikesResourceWithRawResponse:
+        return AsyncLikesResourceWithRawResponse(self._collections.likes)
+
+
+class CollectionsResourceWithStreamingResponse:
+    def __init__(self, collections: CollectionsResource) -> None:
+        self._collections = collections
+
+        self.create = to_streamed_response_wrapper(
+            collections.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            collections.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            collections.update,
+        )
+        self.delete = to_streamed_response_wrapper(
+            collections.delete,
+        )
+
+    @cached_property
+    def posts(self) -> PostsResourceWithStreamingResponse:
+        return PostsResourceWithStreamingResponse(self._collections.posts)
+
+    @cached_property
+    def likes(self) -> LikesResourceWithStreamingResponse:
+        return LikesResourceWithStreamingResponse(self._collections.likes)
+
+
+class AsyncCollectionsResourceWithStreamingResponse:
+    def __init__(self, collections: AsyncCollectionsResource) -> None:
+        self._collections = collections
+
+        self.create = async_to_streamed_response_wrapper(
+            collections.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            collections.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            collections.update,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            collections.delete,
+        )
+
+    @cached_property
+    def posts(self) -> AsyncPostsResourceWithStreamingResponse:
+        return AsyncPostsResourceWithStreamingResponse(self._collections.posts)
+
+    @cached_property
+    def likes(self) -> AsyncLikesResourceWithStreamingResponse:
+        return AsyncLikesResourceWithStreamingResponse(self._collections.likes)

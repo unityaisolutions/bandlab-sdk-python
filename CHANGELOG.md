@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.3 (2025-10-11)
+
+Full Changelog: [v0.0.2...v0.0.3](https://github.com/unityaisolutions/bandlab-sdk-python/compare/v0.0.2...v0.0.3)
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([1bf6691](https://github.com/unityaisolutions/bandlab-sdk-python/commit/1bf6691622550cb48d94f47d8f0348f15224c0ca))
+
 ## 0.0.2 (2025-10-03)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/unityaisolutions/bandlab-sdk-python/compare/v0.0.1...v0.0.2)

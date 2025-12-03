@@ -3,7 +3,7 @@
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/bandlab_sdk.svg?label=pypi%20(stable))](https://pypi.org/project/bandlab_sdk/)
 
-The Bandlab SDK Python library provides convenient access to the Bandlab SDK REST API from any Python 3.8+
+The Bandlab SDK Python library provides convenient access to the Bandlab SDK REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -91,6 +91,7 @@ pip install bandlab_sdk[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from bandlab_sdk import DefaultAioHttpClient
 from bandlab_sdk import AsyncBandlabSDK
@@ -98,7 +99,9 @@ from bandlab_sdk import AsyncBandlabSDK
 
 async def main() -> None:
     async with AsyncBandlabSDK(
-        bearer_token="My Bearer Token",
+        bearer_token=os.environ.get(
+            "BANDLAB_SDK_BEARER_TOKEN"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.validation.validate(
@@ -395,7 +398,7 @@ print(bandlab_sdk.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

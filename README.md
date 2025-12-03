@@ -91,6 +91,7 @@ pip install bandlab_sdk[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from bandlab_sdk import DefaultAioHttpClient
 from bandlab_sdk import AsyncBandlabSDK
@@ -98,7 +99,9 @@ from bandlab_sdk import AsyncBandlabSDK
 
 async def main() -> None:
     async with AsyncBandlabSDK(
-        bearer_token="My Bearer Token",
+        bearer_token=os.environ.get(
+            "BANDLAB_SDK_BEARER_TOKEN"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         response = await client.validation.validate(
